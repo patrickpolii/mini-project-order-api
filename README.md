@@ -2,7 +2,42 @@
 Rest API mini project build with golang, gorm, jwt, gin and postgres using model view controller architecture.
 The feature of this mini project are register, login, create, read, update and delete
 ## Project Structure
-
+```
+pkg    
+│
+└───config
+│   │db.go   
+│   
+└───controller
+|   │authcontroller.go
+|   |ordercontroller.go 
+└───dto
+|   |orderpagination.go
+└───helper
+|   |middlewares.go
+|   |pagination.go   
+|
+└───logger
+|   |logger.go
+|
+└───models
+|   |order.go
+|   |user.go
+| 
+└───routes
+|   |routes.go
+|
+└───tests
+|   |orderController_test.go
+|   
+└───utils
+|   |toke.go
+|
+|env
+|go.mod
+|go.sum
+|main.go
+|README.md
 ## End Point
 GET /orders ----> get all orders
 
