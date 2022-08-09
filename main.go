@@ -22,7 +22,7 @@ func main() {
 	routes.GET("/orders", helper.JwtAuthMiddleware(), controllers.FindOrders)
 	routes.GET("/orders/:id", helper.JwtAuthMiddleware(), controllers.FindOrder)
 	routes.POST("/orders", helper.JwtAuthMiddleware(), controllers.CreateOrder)
-	routes.PATCH("/orders/:id", helper.JwtAuthMiddleware(), controllers.UpdateOrder)
+	routes.PUT("/orders/:id", helper.JwtAuthMiddleware(), controllers.UpdateOrder)
 	routes.DELETE("/orders/:id", helper.JwtAuthMiddleware(), controllers.DeleteOrder)
 
 	//Routes Auth

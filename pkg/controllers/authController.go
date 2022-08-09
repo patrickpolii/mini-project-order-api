@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"net/http"
 	"order-api/pkg/models"
 
@@ -34,6 +35,7 @@ func Login(c *gin.Context) {
 	token, err := models.LoginCheck(u.UserName, u.Password)
 
 	if err != nil {
+		fmt.Println("username incorrect")
 		c.JSON(http.StatusBadRequest, gin.H{"error": "username or password is incorrect."})
 		return
 	}

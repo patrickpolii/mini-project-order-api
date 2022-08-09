@@ -18,7 +18,7 @@ type Users struct {
 	Password string `gorm:"size:255;not null" json:"password"`
 }
 
-func VerifyPassword(password, hashedPassword string) error {
+func VerifyPassword(password string, hashedPassword string) error {
 	return bcrypt.CompareHashAndPassword([]byte(hashedPassword), []byte(password))
 }
 
@@ -35,9 +35,9 @@ func LoginCheck(user_name string, password string) (string, error) {
 	}
 
 	err = VerifyPassword(password, u.Password)
-	fmt.Println(err)
+	fmt.Println("errrrr{}", err)
 
-	if err != nil && err == bcrypt.ErrMismatchedHashAndPassword {
+	if err != nil {
 		logger.Error("Error Bcrypt Password " + err.Error())
 		return "po", err
 	}
@@ -47,9 +47,9 @@ func LoginCheck(user_name string, password string) (string, error) {
 	if err != nil {
 		logger.Error("error generate token " + err.Error())
 		return "", err
+	} else {
+		return token, nil
 	}
-
-	return token, nil
 
 }
 
