@@ -39,6 +39,37 @@ pkg
 |main.go
 |README.md
 ```
+## SQL 
+This mini project using postgreSQL
+### Users
+```
+DROP TABLE IF EXISTS "users";
+CREATE TABLE "users" (
+  "id" SERIAL PRIMARY KEY NOT NULL,
+  "user_name" varchar(100) NOT NULL,
+  "password" varchar NOT NULL
+);
+```
+### Orders
+```
+DROP TABLE IF EXISTS "orders";
+CREATE TABLE "orders" (
+  "id" SERIAL PRIMARY KEY NOT NULL,
+  "product_name" varchar(100) NOT NULL,
+  "status" varchar NOT NULL
+);
+
+INSERT INTO "orders"  VALUES
+	(DEFAULT,'Lenovo Ideapad','1'),
+	(DEFAULT,'Pocophone','1'),
+	(DEFAULT,'Dual Sense','1'),
+	(DEFAULT,'Aripods 2','1'),
+	(DEFAULT,'MBP M1','1'),
+	(DEFAULT,'LG Monitor','1'),
+	(DEFAULT,'MBA M2 ','0'),
+	(DEFAULT,'Airpods Pro','0'),
+	(DEFAULT,'IWatch 7','0');
+```
 ## End Point
 GET /orders ----> get all orders
 
