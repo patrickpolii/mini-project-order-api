@@ -1,6 +1,8 @@
 # mini-project-order-api
-Rest API mini project build with golang, gorm, jwt, gin and postgres.
+Rest API mini project build with golang, gorm, jwt, gin and postgres using model view controller architecture.
 The feature of this mini project are register, login, create, read, update and delete
+## Project Structure
+
 ## End Point
 GET /orders ----> get all orders
 
