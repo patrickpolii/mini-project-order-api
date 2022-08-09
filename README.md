@@ -3,6 +3,7 @@ Rest API mini project build with golang, gorm, jwt, gin and postgre SQL using mo
 ## Key Featrues
 - Auth with Login and Register
 - JWT Token
+- Middlewares
 - CRUD Orders
 ## Project Structure
 ```
@@ -44,7 +45,7 @@ pkg
 |README.md
 ```
 ## SQL 
-This mini project using postgreSQL
+This mini project using postgreSQL with 2 tables users and orders
 ### Users
 ```
 DROP TABLE IF EXISTS "users";
