@@ -13,7 +13,8 @@ pkg
 │   
 └───controller
 |   │authcontroller.go
-|   |ordercontroller.go 
+|   |ordercontroller.go
+|
 └───dto
 |   |orderpagination.go
 └───helper
@@ -34,7 +35,7 @@ pkg
 |   |orderController_test.go
 |   
 └───utils
-|   |toke.go
+|   |token.go
 |
 |env
 |go.mod
@@ -88,5 +89,181 @@ GET /orders?page=0&limit=2 ----> Pagination with page 0 and limit 2 (can customi
 
 POST /register ----> create new user
 
-POST /login ----> login 
+POST /login ----> login
 
+## Example Body and Result Create Order
+### Body create order POST localhost:8080/orders
+```
+{
+    "product_name": "Macbook Air M2 2022",
+    "status": "0"
+}
+```
+### Result
+```
+{
+    "data": {
+        "id": 14,
+        "product_name": "Macbook Air M2 2022",
+        "status": "0"
+    }
+}
+```
+## Example Result Get Orders, Orders by Id and Using Pagination
+### Get all orders GET localhost:8080/orders
+```
+{
+    "data": {
+        "limit": 10,
+        "page": 0,
+        "total_rows": 12,
+        "rows": [
+            {
+                "id": 1,
+                "product_name": "Lenovo Ideapad",
+                "status": "1"
+            },
+            {
+                "id": 2,
+                "product_name": "Pocophone",
+                "status": "1"
+            },
+            {
+                "id": 3,
+                "product_name": "Dual Sense",
+                "status": "1"
+            },
+            {
+                "id": 4,
+                "product_name": "Aripods 2",
+                "status": "1"
+            },
+            {
+                "id": 5,
+                "product_name": "MBP M1",
+                "status": "1"
+            },
+            {
+                "id": 6,
+                "product_name": "LG Monitor",
+                "status": "1"
+            },
+            {
+                "id": 7,
+                "product_name": "MBA M2 ",
+                "status": "0"
+            },
+            {
+                "id": 8,
+                "product_name": "Airpods Pro",
+                "status": "0"
+            },
+            {
+                "id": 12,
+                "product_name": "Macbook Pro M1 Pro",
+                "status": "0"
+            },
+            {
+                "id": 9,
+                "product_name": "MBA 2022",
+                "status": "0"
+            }
+        ]
+    }
+}
+```
+### Get orders by Id GET localhost:8080/orders/6
+```
+{
+    "data": {
+        "id": 6,
+        "product_name": "LG Monitor",
+        "status": "1"
+    }
+}
+```
+### Get orders using pagination GET localhost:8080/orders?page=0&limit=4
+```
+{
+    "data": {
+        "limit": 4,
+        "page": 0,
+        "total_rows": 12,
+        "rows": [
+            {
+                "id": 1,
+                "product_name": "Lenovo Ideapad",
+                "status": "1"
+            },
+            {
+                "id": 2,
+                "product_name": "Pocophone",
+                "status": "1"
+            },
+            {
+                "id": 3,
+                "product_name": "Dual Sense",
+                "status": "1"
+            },
+            {
+                "id": 4,
+                "product_name": "Aripods 2",
+                "status": "1"
+            }
+        ]
+    }
+}
+```
+## Example Body and Result Update Order
+### Body update order PUT localhost:8080/orders/12
+```
+{
+    "product_name": "Macbook Pro M1 Max 2022",
+    "status": "1"
+}
+```
+### Result
+```
+{
+    "data": {
+        "id": 12,
+        "product_name": "Macbook Pro M1 Max 2022",
+        "status": "1"
+    }
+}
+```
+## Example Result Delete Order
+### Result delete order DELETE localhost:8080/orders/12
+```
+{
+    "data": true
+}
+```
+
+## Example Body and Result Register and Login
+### Body Register POST localhost:8080/register
+```
+{
+    "user_name": "user23",
+    "password": "rahasia123"
+}
+```
+### Result Register
+```
+{
+    "message": "registration success"
+}
+```
+### Body Login POST localhost:8080/login
+```
+{
+    "user_name": "user23",
+    "password": "rahasia123"
+}
+```
+### Result Login with token
+```
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NjAwNjIyOTgsInVzZXJfaWQiOjR9.rwTka3M69fLOQ9XOce1CZ-go_KZw1GSnpqi3Dt5oegY"
+}
+```
