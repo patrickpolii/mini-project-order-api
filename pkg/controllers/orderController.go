@@ -1,7 +1,10 @@
 package controllers
 
 import (
+	"fmt"
 	"net/http"
+	"reflect"
+	"strconv"
 
 	"order-api/pkg/config"
 	"order-api/pkg/helper"
@@ -80,11 +83,15 @@ func CreateOrder(c *gin.Context) {
 // Update a order
 func UpdateOrder(c *gin.Context) {
 	// Get model if exist
-	var order models.Order
-	if err := config.DB.Where("id = ?", c.Param("id")).First(&order).Error; err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Record not found!"})
-		return
-	}
+	// var order models.Order
+	fmt.Println(reflect.TypeOf(c.Param("id")))
+	id, _ := strconv.Atoi(c.Param("id"))
+	fmt.Println(reflect.TypeOf(id))
+	// if err := config.DB.Model(&order).Where("id = ?", id).Updates(order).Error; err != nil {
+	// 	c.JSON(http.StatusBadRequest, gin.H{"error": "Record not found!"})
+	// 	return
+	// }
+	// fmt.Println(order)
 
 	// Validate input
 	var input OrderUpdate
@@ -93,7 +100,11 @@ func UpdateOrder(c *gin.Context) {
 		return
 	}
 
-	config.DB.Model(&order).Updates(input)
+	order := models.Order{ID: id, ProductName: input.ProductName, Status: input.Status}
+	if err := config.DB.Where("id = ?", id).Updates(order).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Record not found!"})
+		return
+	}
 
 	c.JSON(http.StatusOK, gin.H{"data": order})
 }
